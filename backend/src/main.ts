@@ -4,9 +4,6 @@ import { NestFactory } from '@nestjs/core';
 import cookieParser from 'cookie-parser';
 
 import { AppModule } from './app.module';
-import { join } from 'path';
-
-import express from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -26,7 +23,6 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
   await app.listen(3001);
 }
 

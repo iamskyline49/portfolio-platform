@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model Skill {
+  id          Int    @id @default(autoincrement())
+  name        String
+  category    String
+  icon        String?
+  proficiency Int
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  techStack   String
+  githubUrl   String?
+  liveUrl     String?
+  image       String?
+  featured    Boolean
+}
+
+model Research {
+  id           Int      @id @default(autoincrement())
+  title        String
+  abstract     String
+  technologies String
+  githubUrl    String?
+  paperUrl     String?
+  publishedAt  DateTime @default(now())
+}
+
+model Hobby {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  image       String?
+}
+
+model Resume {
+  id        Int      @id @default(autoincrement())
+  pdfUrl    String
+  updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}

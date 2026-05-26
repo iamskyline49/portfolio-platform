@@ -37,16 +37,18 @@ export default function HeroSection() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <Link href="/projects">
-            <button className="rounded-2xl bg-blue-500 px-8 py-4 font-semibold transition hover:bg-blue-600">
-              View Projects
-            </button>
+          <Link
+            href="/projects"
+            className="rounded-2xl bg-blue-500 px-8 py-4 font-semibold text-white transition hover:bg-blue-600"
+          >
+            View Projects
           </Link>
 
-          <Link href="/contact">
-            <button className="rounded-2xl border border-slate-700 px-8 py-4 transition hover:border-blue-400 hover:text-blue-400">
-              Contact Me
-            </button>
+          <Link
+            href="/contact"
+            className="rounded-2xl border border-slate-700 px-8 py-4 text-white transition hover:border-blue-400 hover:text-blue-400"
+          >
+            Contact Me
           </Link>
         </div>
       </motion.div>

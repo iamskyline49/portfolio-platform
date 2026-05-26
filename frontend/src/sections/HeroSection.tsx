@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Link } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -35,14 +36,18 @@ export default function HeroSection() {
           building scalable web applications and intelligent systems.
         </p>
 
-        <div className="flex justify-center gap-4">
-          <button className="rounded-2xl bg-blue-500 px-8 py-4 font-semibold transition hover:bg-blue-600">
-            View Projects
-          </button>
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link href="/projects">
+            <button className="rounded-2xl bg-blue-500 px-8 py-4 font-semibold transition hover:bg-blue-600">
+              View Projects
+            </button>
+          </Link>
 
-          <button className="rounded-2xl border border-slate-700 px-8 py-4 transition hover:border-blue-400">
-            Contact Me
-          </button>
+          <Link href="/contact">
+            <button className="rounded-2xl border border-slate-700 px-8 py-4 transition hover:border-blue-400 hover:text-blue-400">
+              Contact Me
+            </button>
+          </Link>
         </div>
       </motion.div>
     </section>

@@ -8,11 +8,11 @@ import {
 
 import { FileInterceptor } from '@nestjs/platform-express';
 
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
-
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 import cloudinary from 'src/config/cloudinary';
+
+import { memoryStorage } from 'multer';
 
 @Controller('upload')
 export class UploadController {
@@ -20,25 +20,23 @@ export class UploadController {
   @Post()
   @UseInterceptors(
     FileInterceptor('file', {
-      storage: new CloudinaryStorage({
-        cloudinary,
-
-        params: async (req, file) => ({
-          folder: 'portfolio-projects',
-
-          allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
-
-          public_id: Date.now().toString(),
-        }),
-      }),
+      storage: memoryStorage(),
     }),
   )
-  uploadFile(
+  async uploadFile(
     @UploadedFile()
-    file: any,
+    file: Express.Multer.File,
   ) {
+    const base64 = file.buffer.toString('base64');
+
+    const dataURI = `data:${file.mimetype};base64,${base64}`;
+
+    const uploaded = await cloudinary.uploader.upload(dataURI, {
+      folder: 'portfolio-projects',
+    });
+
     return {
-      url: file.path,
+      url: uploaded.secure_url,
     };
   }
 }

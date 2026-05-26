@@ -2,67 +2,46 @@
 
 import Link from "next/link";
 
-import { Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
 
-import { useState } from "react";
-
-import ThemeToggle from "./ThemeToggle";
-
-const navLinks = [
-  { name: "Skills", href: "/skills" },
+const navItems = [
+  { name: "Home", href: "/" },
   { name: "Projects", href: "/projects" },
+  { name: "Skills", href: "/skills" },
   { name: "Research", href: "/research" },
   { name: "Hobbies", href: "/hobbies" },
-  { name: "Resume", href: "/resume" },
   { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/70 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-2xl font-black text-blue-400">
-          Prottoy Sarker Diganto
+    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+        <Link
+          href="/"
+          className="bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-2xl font-black text-transparent"
+        >
+          Bipro
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link) => (
+        <nav className="hidden items-center gap-8 md:flex">
+          {navItems.map((item) => (
             <Link
-              key={link.name}
-              href={link.href}
-              className="transition hover:text-blue-400"
+              key={item.name}
+              href={item.href}
+              className={`transition ${
+                pathname === item.href
+                  ? "text-blue-400"
+                  : "text-slate-300 hover:text-white"
+              }`}
             >
-              {link.name}
+              {item.name}
             </Link>
           ))}
-
-          <ThemeToggle />
         </nav>
-
-        <button onClick={() => setOpen(!open)} className="md:hidden">
-          <Menu />
-        </button>
       </div>
-
-      {open && (
-        <div className="border-t border-slate-800 bg-slate-950 md:hidden">
-          <div className="flex flex-col gap-4 p-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-
-            <ThemeToggle />
-          </div>
-        </div>
-      )}
     </header>
   );
 }

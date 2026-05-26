@@ -82,7 +82,7 @@ export default function HeroSection() {
             "Prisma",
             "Playwright",
             "Selenium",
-            "Cypress",
+            "Postman",
             "TypeScript",
           ].map((tech) => (
             <div

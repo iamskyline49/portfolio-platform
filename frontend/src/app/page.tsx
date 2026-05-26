@@ -10,7 +10,7 @@ import ContactSection from "@/sections/ContactSection";
 
 export default function HomePage() {
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden pt-12">
       <HeroSection />
 
       <FeaturedProjects />

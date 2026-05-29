@@ -16,7 +16,6 @@ export default function AdminSkillsPage() {
   const [form, setForm] = useState({
     name: "",
     category: "",
-    proficiency: 50,
   });
 
   const fetchSkills = async () => {
@@ -37,7 +36,6 @@ export default function AdminSkillsPage() {
     setForm({
       name: "",
       category: "",
-      proficiency: 50,
     });
 
     setEditingId(null);
@@ -75,7 +73,6 @@ export default function AdminSkillsPage() {
     setForm({
       name: skill.name,
       category: skill.category,
-      proficiency: skill.proficiency,
     });
   };
 
@@ -110,18 +107,7 @@ export default function AdminSkillsPage() {
               className="rounded-xl border border-slate-700 bg-slate-950 p-4"
             />
 
-            <input
-              type="number"
-              placeholder="Proficiency"
-              value={form.proficiency}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  proficiency: Number(e.target.value),
-                })
-              }
-              className="rounded-xl border border-slate-700 bg-slate-950 p-4"
-            />
+          
 
             <button
               onClick={submitSkill}

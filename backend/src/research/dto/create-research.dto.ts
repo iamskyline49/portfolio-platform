@@ -1,20 +1,28 @@
-import { IsOptional, IsString, IsUrl } from 'class-validator';
+import { IsOptional, IsString, IsUrl, MaxLength } from 'class-validator';
 
 export class CreateResearchDto {
   @IsString()
+  @MaxLength(150)
   title!: string;
 
   @IsString()
-  abstract!: string;
+  @MaxLength(4000)
+  description!: string;
 
-  @IsString()
-  technologies!: string;
+  @IsOptional()
+  @IsUrl()
+  image?: string;
+
+  @IsOptional()
+  @IsUrl()
+  link?: string;
 
   @IsOptional()
   @IsUrl()
   githubUrl?: string;
 
   @IsOptional()
-  @IsUrl()
-  paperUrl?: string;
+  @IsString()
+  @MaxLength(500)
+  technologies?: string;
 }

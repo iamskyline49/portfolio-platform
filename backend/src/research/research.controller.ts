@@ -8,18 +8,22 @@ import {
   Post,
 } from '@nestjs/common';
 
-import { ResearchService } from './research.service';
-
 import { CreateResearchDto } from './dto/create-research.dto';
+
 import { UpdateResearchDto } from './dto/update-research.dto';
+
+import { ResearchService } from './research.service';
 
 @Controller('research')
 export class ResearchController {
   constructor(private readonly researchService: ResearchService) {}
 
   @Post()
-  create(@Body() body: CreateResearchDto) {
-    return this.researchService.create(body);
+  create(
+    @Body()
+    createResearchDto: CreateResearchDto,
+  ) {
+    return this.researchService.create(createResearchDto);
   }
 
   @Get()
@@ -33,8 +37,13 @@ export class ResearchController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body: UpdateResearchDto) {
-    return this.researchService.update(+id, body);
+  update(
+    @Param('id') id: string,
+
+    @Body()
+    updateResearchDto: UpdateResearchDto,
+  ) {
+    return this.researchService.update(+id, updateResearchDto);
   }
 
   @Delete(':id')

@@ -1,20 +1,25 @@
 import { Injectable } from '@nestjs/common';
+
 import { PrismaService } from 'src/prisma/prisma.service';
+
+import { CreateProjectDto } from './dto/create-project.dto';
+
+import { UpdateProjectDto } from './dto/update-project.dto';
 
 @Injectable()
 export class ProjectsService {
   constructor(private prisma: PrismaService) {}
 
-  create(data: any) {
+  create(createProjectDto: CreateProjectDto) {
     return this.prisma.project.create({
-      data,
+      data: createProjectDto,
     });
   }
 
   findAll() {
     return this.prisma.project.findMany({
       orderBy: {
-        createdAt: 'desc',
+        id: 'desc',
       },
     });
   }
@@ -25,10 +30,11 @@ export class ProjectsService {
     });
   }
 
-  update(id: number, data: any) {
+  update(id: number, updateProjectDto: UpdateProjectDto) {
     return this.prisma.project.update({
       where: { id },
-      data,
+
+      data: updateProjectDto,
     });
   }
 

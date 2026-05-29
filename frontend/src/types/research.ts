@@ -3,11 +3,17 @@ export interface Research {
 
   title: string;
 
-  abstract: string;
+  description: string;
 
-  technologies: string;
+  image?: string;
+
+  link?: string;
 
   githubUrl?: string;
 
-  paperUrl?: string;
+  technologies?: string;
+
+  createdAt?: string;
+
+  updatedAt?: string;
 }

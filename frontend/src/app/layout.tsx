@@ -4,32 +4,12 @@ import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 
-import Footer from "@/components/Footer";
-
-import ThemeProvider from "@/components/ThemeProvider";
-
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "Prottoy Sarker Diganto | Full Stack Developer",
+  title: "Prottoy Sarker Diganto",
 
-  description: "AI Engineer, Researcher, and Full Stack Developer portfolio.",
-
-  keywords: ["Next.js", "NestJS", "AI", "Portfolio", "Developer"],
-
-  openGraph: {
-    title: "Prottoy Portfolio",
-
-    description: "Modern AI and Full Stack Developer Portfolio",
-
-    url: "http://localhost:3000",
-
-    siteName: "Bipro Portfolio",
-
-    locale: "en_US",
-
-    type: "website",
-  },
+  description: "Full Stack Developer & Automation Tester",
 };
 
 export default function RootLayout({
@@ -38,17 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body>
-        <ThemeProvider>
-          <Navbar />
+        <Navbar />
 
-          <main className="min-h-screen">{children}</main>
+        <Toaster position="top-right" />
 
-          <Footer />
-
-          <Toaster position="top-right" />
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

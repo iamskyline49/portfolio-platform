@@ -1,18 +1,11 @@
-import { IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
+import { IsString, MaxLength } from 'class-validator';
 
 export class CreateSkillDto {
   @IsString()
-  name!: string;
-
-  @IsString()
+  @MaxLength(100)
   category!: string;
 
-  @IsOptional()
   @IsString()
-  icon?: string;
-
-  @IsInt()
-  @Min(0)
-  @Max(100)
-  proficiency!: number;
+  @MaxLength(100)
+  name!: string;
 }

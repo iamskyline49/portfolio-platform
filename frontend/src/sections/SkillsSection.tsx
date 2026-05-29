@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import SkillCard from "@/components/SkillCard";
-
 import { getSkills } from "@/services/skills";
 
 import { Skill } from "@/types/skill";
@@ -25,18 +23,72 @@ export default function SkillsSection() {
     fetchSkills();
   }, []);
 
-  return (
-    <section className="mx-auto max-w-7xl px-6 py-24">
-      <div className="mb-12">
-        <p className="mb-2 text-blue-400">Expertise</p>
+  const groupedSkills = skills.reduce(
+    (acc, skill) => {
+      if (!acc[skill.category]) {
+        acc[skill.category] = [];
+      }
 
-        <h2 className="text-5xl font-black">Skills & Technologies</h2>
+      acc[skill.category].push(skill);
+
+      return acc;
+    },
+    {} as Record<string, Skill[]>,
+  );
+
+  const categoryOrder = [
+    "Testing & Quality Assurance",
+    "Full Stack Development",
+    "Database & Backend",
+    "DevOps & Deployment",
+    "IoT & Embedded Systems",
+    "Programming Languages",
+  ];
+
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-40">
+      <div className="mb-24">
+        <p className="mb-6 text-sm uppercase tracking-[0.4em] text-zinc-500">
+          Capabilities
+        </p>
+
+        <h2 className="text-6xl font-semibold tracking-tight md:text-8xl">
+          Technologies
+          <br />& Expertise.
+        </h2>
+
+        <p className="mt-8 max-w-2xl text-lg text-zinc-400">
+          A collection of technologies, tools, and practices I use to build
+          reliable software, automate workflows, and deliver scalable digital
+          products.
+        </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
-        {skills.map((skill) => (
-          <SkillCard key={skill.id} skill={skill} />
-        ))}
+      <div className="space-y-20">
+        {categoryOrder.map((category) => {
+          const categorySkills = groupedSkills[category];
+
+          if (!categorySkills || categorySkills.length === 0) {
+            return null;
+          }
+
+          return (
+            <div key={category} className="border-t border-zinc-900 pt-10">
+              <h3 className="mb-8 text-2xl font-semibold">{category}</h3>
+
+              <div className="flex flex-wrap gap-4">
+                {categorySkills.map((skill) => (
+                  <div
+                    key={skill.id}
+                    className="rounded-full border border-zinc-800 px-5 py-3 text-sm text-zinc-300 transition hover:border-zinc-500"
+                  >
+                    {skill.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ export class ProjectsService {
   findAll() {
     return this.prisma.project.findMany({
       orderBy: {
-        id: 'desc',
+        id: 'asc',
       },
     });
   }

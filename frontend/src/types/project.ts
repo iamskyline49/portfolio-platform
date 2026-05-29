@@ -11,13 +11,13 @@ export interface Project {
 
   liveUrl?: string;
 
-  featured?: boolean;
-
   image?: string;
 
   image2?: string;
 
   image3?: string;
+
+  featured: boolean;
 
   createdAt?: string;
 

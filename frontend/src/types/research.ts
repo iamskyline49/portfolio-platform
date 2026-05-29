@@ -5,13 +5,13 @@ export interface Research {
 
   description: string;
 
-  image?: string;
-
-  link?: string;
+  technologies?: string;
 
   githubUrl?: string;
 
-  technologies?: string;
+  link?: string;
+
+  image?: string;
 
   createdAt?: string;
 

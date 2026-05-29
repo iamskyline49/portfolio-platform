@@ -3,9 +3,7 @@
 import { useEffect, useState } from "react";
 
 import AdminLayout from "@/components/AdminLayout";
-
 import { authApi } from "@/lib/auth-api";
-
 import { Research } from "@/types/research";
 
 export default function AdminResearchPage() {
@@ -15,10 +13,10 @@ export default function AdminResearchPage() {
 
   const [form, setForm] = useState({
     title: "",
-    abstract: "",
+    description: "",
     technologies: "",
     githubUrl: "",
-    paperUrl: "",
+    link: "",
   });
 
   const fetchResearch = async () => {
@@ -40,10 +38,10 @@ export default function AdminResearchPage() {
 
     setForm({
       title: "",
-      abstract: "",
+      description: "",
       technologies: "",
       githubUrl: "",
-      paperUrl: "",
+      link: "",
     });
   };
 
@@ -78,10 +76,10 @@ export default function AdminResearchPage() {
 
     setForm({
       title: item.title,
-      abstract: item.abstract,
-      technologies: item.technologies,
+      description: item.description,
+      technologies: item.technologies || "",
       githubUrl: item.githubUrl || "",
-      paperUrl: item.paperUrl || "",
+      link: item.link || "",
     });
   };
 
@@ -106,19 +104,19 @@ export default function AdminResearchPage() {
 
             <textarea
               rows={6}
-              placeholder="Abstract"
-              value={form.abstract}
+              placeholder="Description"
+              value={form.description}
               onChange={(e) =>
                 setForm({
                   ...form,
-                  abstract: e.target.value,
+                  description: e.target.value,
                 })
               }
               className="rounded-xl border border-slate-700 bg-slate-950 p-4"
             />
 
             <input
-              placeholder="Technologies"
+              placeholder="Technologies (comma separated)"
               value={form.technologies}
               onChange={(e) =>
                 setForm({
@@ -142,12 +140,12 @@ export default function AdminResearchPage() {
             />
 
             <input
-              placeholder="Paper URL"
-              value={form.paperUrl}
+              placeholder="Research Link"
+              value={form.link}
               onChange={(e) =>
                 setForm({
                   ...form,
-                  paperUrl: e.target.value,
+                  link: e.target.value,
                 })
               }
               className="rounded-xl border border-slate-700 bg-slate-950 p-4"
@@ -172,10 +170,10 @@ export default function AdminResearchPage() {
                 <div>
                   <h2 className="mb-2 text-2xl font-black">{item.title}</h2>
 
-                  <p className="mb-4 text-slate-400">{item.abstract}</p>
+                  <p className="mb-4 text-slate-400">{item.description}</p>
 
                   <div className="flex flex-wrap gap-2">
-                    {item.technologies.split(",").map((tech: string) => (
+                    {item.technologies?.split(",").map((tech) => (
                       <span
                         key={tech}
                         className="rounded-full bg-purple-500/20 px-3 py-1 text-sm text-purple-300"

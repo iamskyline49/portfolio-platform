@@ -22,6 +22,8 @@ export default function AdminProjectsPage() {
     githubUrl: "",
     liveUrl: "",
     image: "",
+    image2: "",
+    image3: "",
     featured: false,
   });
 
@@ -49,6 +51,8 @@ export default function AdminProjectsPage() {
       githubUrl: "",
       liveUrl: "",
       image: "",
+      image2: "",
+      image3: "",
       featured: false,
     });
   };
@@ -89,7 +93,9 @@ export default function AdminProjectsPage() {
       githubUrl: project.githubUrl || "",
       liveUrl: project.liveUrl || "",
       image: project.image || "",
-      featured: project.featured,
+      image2: project.image2 || "",
+      image3: project.image3 || "",
+      featured: project.featured ?? false,
     });
   };
 
@@ -169,6 +175,23 @@ export default function AdminProjectsPage() {
                   setForm({
                     ...form,
                     image: url,
+                  })
+                }
+              />
+              <ImageUpload
+                onUploaded={(url) =>
+                  setForm({
+                    ...form,
+                    image2: url,
+                  })
+                }
+              />
+
+              <ImageUpload
+                onUploaded={(url) =>
+                  setForm({
+                    ...form,
+                    image3: url,
                   })
                 }
               />

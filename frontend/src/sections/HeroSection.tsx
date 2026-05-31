@@ -46,7 +46,7 @@ export default function HeroSection() {
             </Link>
 
             <a
-              href="/resume.pdf"
+              href="/CV_ProttoySarkerDiganto_Updated.pdf"
               download
               className="rounded-full border border-zinc-800 px-8 py-4 text-sm text-white transition hover:border-zinc-600"
             >

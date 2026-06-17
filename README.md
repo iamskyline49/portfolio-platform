@@ -9,7 +9,7 @@ This project is designed as a developer portfolio system where the frontend disp
 ## Live Demo
 
 ```txt
-[https://www.prottoysarkerdiganto.dev/]
+https://www.prottoysarkerdiganto.dev/
 ```
 
 ---
